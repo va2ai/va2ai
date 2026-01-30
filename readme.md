@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/YOUR_GITHUB_USERNAME">GitHub</a> •
-  <a href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME">LinkedIn</a> •
+  <a href="https://github.com/va2ai">GitHub</a> •
+  <a href="https://www.linkedin.com/in/va2ai">LinkedIn</a> •
   <a href="mailto:ai@vaclaims.net">ai@vaclaims.net</a> •
   <a href="https://vaclaims.net">Portfolio</a>
 </p>
