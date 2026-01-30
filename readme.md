@@ -39,58 +39,39 @@
   <img src="https://komarev.com/ghpvc/?username=va2ai&style=flat-square&color=blue" />
 </p>
 
----
+Applied AI / LLM Engineer • Production RAG & Agentic Systems • Backend/API Builder
+I build grounded, eval-driven AI systems (RAG, agents, search, tools) with killer observability, safety, and governance. From zero to shipped—no demos, just real production wins.
+🚀 What I Do (Plain English)
 
-## 🚀 What I do (plain English)
-- Ship **production AI systems**, not demos
-- Build **RAG + agent pipelines** with grounding, citations, and evals
-- Design **backend APIs and data pipelines** for AI-first products
+Ship battle-tested AI systems that scale.
+Craft RAG + agent pipelines with citations, evals, and no hallucinations.
+Design robust backend APIs and data flows for AI-first products.
 
-## 🧠 What I’m best at
-- Agentic orchestration (tools, routing, memory, safety)
-- Retrieval systems (chunking, embeddings, hybrid/vector search)
-- Evaluation & observability (golden sets, regression gates, telemetry)
-- Structured extraction from messy legal / policy documents
+🧠 What I’m Best At
 
----
+Agent orchestration (tools, routing, memory, guardrails).
+Retrieval magic (chunking, embeddings, hybrid search).
+Evals & monitoring (golden datasets, regression gates, telemetry).
+Extracting structured gold from messy legal/policy docs.
 
-## 🔥 Currently building
-- **VA Decision Analysis System**  
-  Entity extraction → pgvector graph-lite schema → similarity search with evidence chains
+🔥 Currently Building
 
-- **Criteria-Driven Intake Companion**  
-  Guided interview UX mapping symptoms and evidence directly to Title 38 CFR criteria
+VA Decision Analysis System: Entity extraction → pgvector graph → similarity search with evidence chains. (MVP validated on real corpus.)
+Criteria-Driven Intake Companion: Schema-guided UX mapping symptoms/evidence to Title 38 CFR criteria. (Build-ready PRD.)
+AI Platform Patterns: Guardrails, eval gates, tool registries, and observability templates for GenAI teams. (Open to collab.)
 
-- **AI Platform Patterns**  
-  Guardrails, eval gates, tool registries, and observability templates for GenAI teams
+🧩 Featured Projects
 
----
+VA Decision Analysis System: Instant BVA case matches + key evidence. Stack: Python, FastAPI, PostgreSQL/pgvector, LLM extraction.
+Criteria Companion: Smart interviews for flawless filings. Stack: Node.js, vector search, schema-driven flows.
+Streaming AI Signal Framework: Real-time monitoring, setup detection, AI scoring. Stack: WebSockets, event pipelines, scoring agents. (In dev.)
 
-## 🧩 Featured projects (pin these)
-### VA Decision Analysis System
-- **Goal:** Instantly show similar BVA cases + the evidence that mattered
-- **Stack:** Python, FastAPI, PostgreSQL + pgvector, LLM extraction
-- **Status:** MVP validated on sampled corpus
+🤝 Contact
 
-### Criteria Companion
-- **Goal:** Ask the *right* questions before drafting or filing
-- **Stack:** Node.js, vector search, schema-driven interviews
-- **Status:** Build-ready PRD
+📍 Miamisburg / Dayton / Cincinnati (Remote OK)
+📧 ai@vaclaims.net
+🌐 https://vaclaims.net
+GitHub • LinkedIn • Portfolio
 
-### Streaming AI Signal Framework
-- **Goal:** Monitor real-time data, detect setups, score with AI
-- **Stack:** WebSockets, event pipelines, scoring agents
-- **Status:** Active development
-
----
-
-## 🤝 Contact
-- 📍 Miamisburg / Dayton / Cincinnati (open to remote)
-- 📧 ai@vaclaims.net
-- 🌐 https://vaclaims.net
-
----
-
-## 📝 Recruiter note
-I specialize in **applied AI** — taking ambiguous problems from zero to production with
-evaluation, grounding, and operational discipline.
+📝 Recruiter Note
+Specialize in applied AI: Ambiguous problems → production reality with evals, grounding, and ops rigor. Let's talk if you're building real AI—not hype.
