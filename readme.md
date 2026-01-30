@@ -28,16 +28,16 @@
 </p>
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&rank_icon=github&hide_border=true" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&hide_border=true" />
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&rank_icon=github&hide_border=true" />
+  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=va2ai&layout=compact&hide_border=true" />
 </p>
 
 <p align="center">
-  <img height="180" src="https://streak-stats.demolab.com?user=YOUR_GITHUB_USERNAME&hide_border=true" />
+  <img height="180" src="https://streak-stats.demolab.com?user=va2ai&hide_border=true" />
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME&style=flat-square&color=blue" />
+  <img src="https://komarev.com/ghpvc/?username=va2ai&style=flat-square&color=blue" />
 </p>
 
 ---
