@@ -32,9 +32,7 @@
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=va2ai&layout=compact&hide_border=true" />
 </p>
 
-<p align="center">
-  <img height="180" src="https://streak-stats.demolab.com?user=va2ai&hide_border=true" />
-</p>
+
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=va2ai&style=flat-square&color=blue" />
