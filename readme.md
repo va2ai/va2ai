@@ -11,6 +11,7 @@
 <p align="center">
   <a href="https://github.com/va2ai">GitHub</a> •
   <a href="https://www.linkedin.com/in/va2ai">LinkedIn</a> •
+  <a href="https://vaclaims.net/resume">Resume</a> •
   <a href="mailto:ai@vaclaims.net">ai@vaclaims.net</a> •
   <a href="https://vaclaims.net">Portfolio</a>
 </p>
@@ -56,22 +57,24 @@ Extracting structured gold from messy legal/policy docs.
 
 🔥 Currently Building
 
-VA Decision Analysis System: Entity extraction → pgvector graph → similarity search with evidence chains. (MVP validated on real corpus.)
+[**rag-decision-analysis-system**](https://github.com/va2ai/rag-decision-analysis-system): Entity extraction → pgvector graph → similarity search with evidence chains. (MVP validated on real corpus.)
 Criteria-Driven Intake Companion: Schema-guided UX mapping symptoms/evidence to Title 38 CFR criteria. (Build-ready PRD.)
-AI Platform Patterns: Guardrails, eval gates, tool registries, and observability templates for GenAI teams. (Open to collab.)
+[**ai-agent-orchestration-platform**](https://github.com/va2ai/ai-agent-orchestration-platform): Multi-agent coordination, convergence, and real-time orchestration for LLM systems. Guardrails, eval gates, tool registries, and observability templates.
 
 🧩 Featured Projects
 
-VA Decision Analysis System: Instant BVA case matches + key evidence. Stack: Python, FastAPI, PostgreSQL/pgvector, LLM extraction.
-Criteria Companion: Smart interviews for flawless filings. Stack: Node.js, vector search, schema-driven flows.
-Streaming AI Signal Framework: Real-time monitoring, setup detection, AI scoring. Stack: WebSockets, event pipelines, scoring agents. (In dev.)
+[**rag-decision-analysis-system**](https://github.com/va2ai/rag-decision-analysis-system): Retrieval-augmented analysis for high-stakes decision workflows. Instant BVA case matches + key evidence. Stack: Python, FastAPI, PostgreSQL/pgvector, LLM extraction.
+
+[**ai-agent-orchestration-platform**](https://github.com/va2ai/ai-agent-orchestration-platform): Multi-agent coordination, convergence, and real-time orchestration for LLM systems. Stack: Python, WebSockets, async APIs, model-agnostic design.
+
+[**edge-ai-search-validation-service**](https://github.com/va2ai/edge-ai-search-validation-service): Low-latency AI search and validation workflows deployed at the edge. Stack: Cloudflare Workers, OpenAI Responses API, edge computing.
 
 🤝 Contact
 
 📍 Miamisburg / Dayton / Cincinnati (Remote OK)
 📧 ai@vaclaims.net
 🌐 https://vaclaims.net
-GitHub • LinkedIn • Portfolio
+[GitHub](https://github.com/va2ai) • [LinkedIn](https://www.linkedin.com/in/va2ai) • [Resume](https://vaclaims.net/resume) • [Portfolio](https://vaclaims.net)
 
 📝 Recruiter Note
 Specialize in applied AI: Ambiguous problems → production reality with evals, grounding, and ops rigor. Let's talk if you're building real AI—not hype.
