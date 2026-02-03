@@ -36,7 +36,7 @@
 
 ---
 
-### 🧠 Featured Projects
+### 🧠 Featured Recent Projects
 
 #### [**AI Agent Orchestration Platform**](https://github.com/va2ai/ai-agent-orchestration-platform)
 *A "roundtable refinement" multi-agent system designed for high-accuracy reasoning.*
