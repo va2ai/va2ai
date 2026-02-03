@@ -73,6 +73,6 @@
 📝 **Note to Recruiters:** I specialize in the bridge between "AI hype" and "Applied Reality." If you need an engineer who understands evaluation rigor, grounding, and operational cost—let’s talk.
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&rank_icon=github&hide_border=true&theme=transparent" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=va2ai&layout=compact&hide_border=true&theme=transparent" />
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&theme=dark&hide_border=true" />
+  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=va2ai&layout=compact&theme=dark&hide_border=true" />
 </p>
