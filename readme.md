@@ -1,11 +1,11 @@
-<h1 align="center">Hi, I’m Chris 👋</h1>
+<h1 align="center">Hi, I'm Chris 👋</h1>
 
 <p align="center">
   <b>Applied AI / LLM Engineer • Production RAG & Agentic Systems • Backend Architect</b>
 </p>
 
 <p align="center">
-  I build <b>grounded, eval-driven AI systems</b> (RAG, agents, search) with a focus on <b>observability, safety, and production stability</b>. 
+  I build <b>grounded, eval-driven AI systems</b> (RAG, agents, search) with a focus on <b>observability, safety, and production stability</b>.
   From zero to shipped—moving beyond demos into robust, high-stakes environments.
 </p>
 
@@ -38,6 +38,16 @@
 
 ### 🧠 Featured Recent Projects
 
+#### **Multi-Agent Ideation Pipeline**
+*5-phase AI pipeline with specialized agents for market research, idea generation, validation, and scoring -- backed by a real-time SSE dashboard.*
+*   **The Impact:** Orchestrates 5 specialized agents (Trend Hunter, Ideator, Validator, Scorer, Synthesizer) through a pub/sub event bus, producing ranked startup ideas from a single industry prompt.
+*   **Key Features:** FastAPI server with SSE streaming, live agent status dashboard, Gemini Deep Research integration, LLM-powered narrative report generation, full observability metrics, and 200+ tests.
+
+#### [**LLM Compaction Benchmark**](https://github.com/va2ai/llm-compaction-benchmark)
+*Benchmarking conversation compaction quality across 6 Gemini models in a 36-combination matrix.*
+*   **The Impact:** Discovered that smaller/faster models (gemini-2.5-flash-lite at 2s) outperform larger models (gemini-2.5-pro at 14s) for compaction, with the best combination achieving 132% quality retention.
+*   **Key Features:** Fact recall, task continuation, and hallucination detection tests; interactive Chart.js dashboards; prompt engineering analysis showing quality improvement from 70% to 97%+.
+
 #### [**AI Agent Orchestration Platform**](https://github.com/va2ai/ai-agent-orchestration-platform)
 *A "roundtable refinement" multi-agent system designed for high-accuracy reasoning.*
 *   **The Impact:** Implemented parallel critic loops and convergence conditions that significantly accelerated refinement cycles compared to sequential chains.
@@ -68,9 +78,9 @@
 ---
 
 ### 🤝 Let's Connect
-📍 **Location:** Miamisburg / Dayton / Cincinnati (Remote OK)  
-📧 **Email:** [ai@vaclaims.net](mailto:ai@vaclaims.net)  
-📝 **Note to Recruiters:** I specialize in the bridge between "AI hype" and "Applied Reality." If you need an engineer who understands evaluation rigor, grounding, and operational cost—let’s talk.
+📍 **Location:** Miamisburg / Dayton / Cincinnati (Remote OK)
+📧 **Email:** [ai@vaclaims.net](mailto:ai@vaclaims.net)
+📝 **Note to Recruiters:** I specialize in the bridge between "AI hype" and "Applied Reality." If you need an engineer who understands evaluation rigor, grounding, and operational cost—let's talk.
 
 <p align="center">
   <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&theme=dark&hide_border=true" />
