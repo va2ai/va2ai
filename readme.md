@@ -5,8 +5,7 @@
 </p>
 
 <p align="center">
-  I build <b>grounded, eval-driven AI systems</b> (RAG, agents, search) with a focus on <b>observability, safety, and production stability</b>.
-  From zero to shipped—moving beyond demos into robust, high-stakes environments.
+  Building AI systems engineered like infrastructure: multi-agent pipelines, RAG, and LLM benchmarks -- tested, observable, and production-hardened.
 </p>
 
 <p align="center">
