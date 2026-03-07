@@ -62,6 +62,21 @@
 *   **The Impact:** Achieved high retrieval recall by framing development around evaluation rigor—focusing on reproducible extraction and defensible output chains.
 *   **Key Features:** Hybrid search optimization, entity extraction at scale, and similarity search for high-stakes decision matching.
 
+#### [**LLM Compaction Benchmark**](https://github.com/va2ai/llm-compaction-benchmark)
+*Benchmarking framework measuring conversation compaction quality across 6 Gemini models in a 36-combination matrix.*
+*   **The Impact:** Discovered smaller, faster models (2s) outperform larger ones (14s) for compaction — 132% quality retention. Prompt engineering improved scores from 70% to 97%+.
+*   **Key Features:** Interactive Chart.js dashboards, 100% fact recall, zero hallucination in majority of model pairs.
+
+#### [**Multi-Agent Ideation Pipeline**](https://github.com/va2ai/nexus-deep-research)
+*5-phase AI system where specialized agents collaborate to discover, generate, validate, and rank ideas autonomously.*
+*   **The Impact:** End-to-end automation of idea research and validation through event-driven agent collaboration with real-time streaming.
+*   **Key Features:** FastAPI + SSE streaming, pub/sub event bus, Gemini Deep Research integration, 200+ tests.
+
+#### [**Veteran2Veteran (V2V)**](https://github.com/va2ai/vaintel)
+*Full-stack VA disability claims intelligence platform with AI-powered tools for veterans.*
+*   **The Impact:** Provides veterans with BVA case search, AI chat, Nexus Scout, and VA Math Calculator — making complex legal/medical information accessible.
+*   **Key Features:** React + Firebase, Firestore, Gemini-powered chat, content pipeline with markdown rendering.
+
 #### [**DevPortAI RAG Fact-Check Monorepo**](https://github.com/va2ai/devportai-rag-fact-check)
 *A reference architecture designed to stress-test and improve grounding reliability in RAG pipelines.*
 *   **The Impact:** Successfully reduced ungrounded claims through multi-stage verification layers and improved overall retrieval correctness.
