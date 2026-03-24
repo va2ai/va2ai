@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
   <img src="https://img.shields.io/badge/Vector%20Search-FF6F61?style=for-the-badge" />
   <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
@@ -56,6 +57,7 @@
 *Edge-deployed research agent that performs multi-round search and returns citation-backed synthesis.*
 *   **The Impact:** Developed robust source-quality scoring and conflict detection to mitigate hallucinations under strict edge latency constraints.
 *   **Key Features:** Designed for low-latency validation and high-recall research against live web and internal data sources.
+#### [**Post-Generation Citation Validator**](https://github.com/va2ai/bva-citation-validator)*Production hallucination detection pipeline — sentinel-tagged context, grounded generation, structured extraction, cross-reference validation.**   **The Impact:** Reduced citation hallucination from ~15% to under 1.5% of sessions in a legal intelligence platform where fabricated citations directly harm veterans' claims.*   **Key Features:** Node.js + Anthropic API, dual-mode demo (grounded vs. ungrounded), live BVA API verification, web GUI with model selection and customizable system prompts.
 
 #### [**RAG Decision Analysis System**](https://github.com/va2ai/rag-decision-analysis-system)
 *Extraction + hybrid retrieval pipeline for processing large corpuses of regulated legal decisions.*
