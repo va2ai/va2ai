@@ -1,4 +1,4 @@
-<h1 align="center">Hi, I'm Chris 👋</h1>
+**<h1 align="center">Hi, I'm Chris 👋</h1>
 
 <p align="center">
   <b>Applied AI / LLM Engineer • Multi-Agent Systems • Backend</b>
@@ -145,3 +145,4 @@ If you're hiring for applied AI / LLM engineering roles — especially ones wher
   <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&theme=dark&hide_border=true" />
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=va2ai&layout=compact&theme=dark&hide_border=true" />
 </p>
+**
