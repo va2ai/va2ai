@@ -1,11 +1,11 @@
 <h1 align="center">Hi, I'm Chris 👋</h1>
 
 <p align="center">
-  <b>Applied AI / LLM Engineer • Production RAG & Agentic Systems • Backend Architect</b>
+  <b>Applied AI / LLM Engineer • Multi-Agent Systems • Backend</b>
 </p>
 
 <p align="center">
-  I ship AI systems engineered like infrastructure: multi-agent pipelines, RAG, real-time voice AI, and LLM benchmarks — tested, observable, production-hardened, and <b>live in production</b>.
+  I ship production AI systems. Each project below answers four questions — what it is, why I built it this way, what could break, what I learned — so you can see I understood what I shipped, not just that I shipped it.
 </p>
 
 <p align="center">
@@ -35,103 +35,111 @@
 ### 🚢 Currently Shipping
 
 #### [**V2V Intelligence**](https://vaclaims.net) — Live SaaS (deployed March 30, 2026)
-*A two-layer VA disability claims intelligence product used by veterans and attorneys.*
-*   **Frontend ([vaintel](https://github.com/va2ai/vaintel)):** React 19 + Firebase Auth/Firestore + Stripe. Powers BVA case search, Nexus Scout, Decision Deconstructor, VA Math Calculator, and embedded AI chat.
-*   **Multi-agent intelligence backend:** 12-agent production system on GCP Cloud Run with PostgreSQL/pgvector, LangGraph, and the Anthropic Claude API. Handles claim analysis, Claim Fix Packet document generation, automated daily executive briefs, and content pipeline publishing to Cloudflare R2.
-*   **Engineering rigor:** Ablation-tested pipeline configurations (E2A/E2B/E3A/E3B) to empirically compare multi-agent vs. single-prompt architectures — architectural decisions driven by measured output quality, not vibes.
+*   **What it is:** A VA disability claims intelligence product for veterans and attorneys. Two layers — a React/Firebase web app ([vaintel](https://github.com/va2ai/vaintel)) and a 12-agent backend on GCP Cloud Run (PostgreSQL/pgvector, LangGraph, Anthropic Claude API). The backend handles claim analysis, Claim Fix Packet generation, daily executive briefs, and content publishing to Cloudflare R2.
+*   **Why this way:** Single-prompt LLM calls don't reliably decompose claim analysis (nexus evaluation, citation gathering, remedy drafting are genuinely distinct tasks). Split frontend/backend so the React side stays on Firebase/Stripe (fast iteration on the user surface) while the intelligence layer evolves independently on Cloud Run.
+*   **What could break:** Claude API pricing or rate-limit changes are my biggest single dependency. BVA source data format changes would ripple through the retrieval layer. The Firebase↔Cloud Run split means observability lives in two places, which makes incident response slower than I'd like.
+*   **What I learned:** I ran ablation studies (E2A/E2B/E3A/E3B configurations) to compare multi-agent vs. single-prompt pipelines empirically. Finding: multi-agent wins on complex decomposition tasks but loses on simple lookups where the latency tax isn't worth it. Architecture choice has to be per-task, not per-product.
 
 ---
 
 ### 🧠 Featured Projects
 
 #### [**BVA Research API & MCP Platform**](https://github.com/va2ai/bvaapi2)
-*FastAPI service + MCP server exposing 25+ tools across BVA decisions, 38 CFR, CAVC case law, M21-1, and the Federal Register — usable by any MCP-compatible client.*
-*   **The Impact:** Turns unstructured regulatory corpus into structured, queryable research infrastructure for AI agents — the retrieval layer powering V2V Intelligence.
-*   **Key Features:** USA.gov search integration, section-aware regex preset search (9 built-in presets for CFR citations, nexus opinions, diagnostic codes), batch operations, rate-limited concurrent request handling, Dockerized Cloud Run deployment.
+*   **What it is:** FastAPI service + MCP server exposing 25+ tools for BVA decisions, 38 CFR, CAVC case law, M21-1, and the Federal Register. Deployed on Cloud Run; usable by any MCP-compatible client.
+*   **Why this way:** Chose to scrape USA.gov's BVA search instead of maintaining my own vector index — their index is more complete and has zero maintenance cost. No database in v1; everything is computed live. Saved three weeks of build time with no measurable quality loss.
+*   **What could break:** USA.gov search availability or rate limits. BVA page HTML changes would break the parser. No caching layer means sustained concurrent load degrades quickly.
+*   **What I learned:** "No database" was the right call for v1. The instinct to persist everything is usually wrong when freshness matters more than speed.
 
 #### [**Post-Generation Citation Validator**](https://github.com/va2ai/bva-citation-validator)
-*Production hallucination detection pipeline — sentinel-tagged context, grounded generation, structured extraction, cross-reference validation.*
-*   **The Impact:** Reduced citation hallucination from ~15% to under 1.5% of sessions in a legal intelligence platform where fabricated citations directly harm veterans' claims.
-*   **Key Features:** Node.js + Anthropic API, dual-mode demo (grounded vs. ungrounded), live BVA API verification, web GUI with model selection and customizable system prompts.
+*   **What it is:** A second-pass hallucination detector for CFR citations. Runs after generation, extracts cited regulations, cross-references them against the live BVA API, flags fabrications.
+*   **Why this way:** Grounded generation alone only gets you so far — models still hallucinate citation numbers that "sound right." A cheap post-hoc check catches what generation-time grounding misses, and it's much easier to tune than trying to prevent the hallucination upstream.
+*   **What could break:** Live BVA API downtime makes the validator unable to verify. New CFR citation formats not in the extractor pattern would silently pass through. Over-strict validation produces false positives that hurt trust.
+*   **What I learned:** Average hallucination rate is the wrong metric for this domain. One bad citation in a claim packet is catastrophic for the veteran, so I optimized for *sessions with zero hallucinations* rather than a lower average. Got from ~15% sessions-with-hallucinations to under 1.5%.
 
 #### [**LLM Compaction Benchmark**](https://github.com/va2ai/llm-compaction-benchmark)
-*Benchmarking framework measuring conversation compaction quality across 6 Gemini models in a 36-combination matrix.*
-*   **The Impact:** Discovered smaller/faster models (gemini-2.5-flash-lite at 2s) outperform larger ones (gemini-2.5-pro at 14s) for compaction, with the best combination achieving 132% quality retention. Prompt engineering lifted scores from 70% to 97%+.
-*   **Key Features:** Fact recall, task continuation, and hallucination detection tests; interactive Chart.js dashboards; 100% fact recall and zero hallucination in top model pairs.
+*   **What it is:** Benchmarking framework running 36 combinations across 6 Gemini models, measuring how well each preserves conversation context after compaction. Fact recall, task continuation, and hallucination tests with Chart.js dashboards.
+*   **Why this way:** Assumed bigger models would compact better because "they understand more." Wanted to test the assumption instead of paying for it.
+*   **What could break:** Results don't transfer to Claude or GPT model families. Prompt engineering explained more variance than model choice — the model-centric framing could mislead people optimizing for the wrong variable.
+*   **What I learned:** Cheap/fast models beat expensive ones for compaction: gemini-2.5-flash-lite at 2s outperformed gemini-2.5-pro at 14s, with the best combination hitting 132% quality retention. Prompt quality lifted scores from 70% to 97%+. On narrow tasks, prompt design beats model size.
 
 #### [**Crazy Caller**](https://github.com/va2ai/crazy-caller)
-*Real-time AI phone assistant — makes outbound calls via Twilio, conducts natural conversation using Gemini Live API, streams live transcripts to a web dashboard.*
-*   **The Impact:** End-to-end real-time voice AI — two concurrent WebSocket streams bridged, G.711 mulaw ↔ PCM16 resampling, barge-in interruption, mid-conversation tool calling.
-*   **Key Features:** Twilio Programmable Voice + Gemini 3.1 Flash Live, 30 voice options, personality presets (Professional, Assertive, Southern Charm, etc.), pure TypeScript audio conversion (no ffmpeg / native deps), live WebSocket dashboard.
+*   **What it is:** Real-time AI phone assistant. Dials real numbers via Twilio, runs Gemini Live API for the conversation, streams transcripts to a web dashboard.
+*   **Why this way:** Most "AI voice" products paper over audio pipeline issues with ffmpeg or native deps that break at scale. Wrote pure TypeScript mulaw↔PCM16 resampling so the thing actually deploys cleanly. Real-time voice is an audio streaming problem first, an AI problem second.
+*   **What could break:** Gemini Live API contract changes. Twilio media format drift. Packet loss during resampling degrades audio noticeably.
+*   **What I learned:** Barge-in (user interrupting the AI mid-sentence) is the hardest part of voice UX. Interrupt responsiveness matters more than model latency — users will tolerate a pause, but not being talked over.
 
 #### [**GCP MCP Deployer**](https://github.com/va2ai/gcp-mcp-deployer)
-*A Claude Skill that takes any MCP server GitHub repo and produces a production-ready Cloud Run deployment — Dockerfile generation, Artifact Registry, Secret Manager, dedicated service account, health checks, and Claude Desktop config included.*
-*   **The Impact:** Collapses multi-hour MCP deployment workflows into a single conversation with Claude. Works with any MCP server — Node.js, Python, TypeScript, FastMCP, or custom.
-*   **Key Features:** Automatic transport/port/secret detection, generated end-to-end `deploy.sh` with preflight checks, API enablement, and health verification.
+*   **What it is:** A Claude Skill that takes any MCP server repo and generates a production-ready Cloud Run deployment — Dockerfile, Artifact Registry setup, Secret Manager config, service account, health checks, and Claude Desktop connection settings.
+*   **Why this way:** I'd deployed a handful of MCP servers manually and noticed the work was 80% repetitive boilerplate. Codified my own reps into a skill so I (and anyone else) can skip the boilerplate.
+*   **What could break:** MCP transport standard evolution. GCP surface changes. Secrets handling if users accidentally commit keys — I push on this in the generated docs but can't enforce it.
+*   **What I learned:** Building the skill forced me to write down the deployment checklist explicitly. The checklist ended up being more valuable than the generator — I reach for it manually more than I reach for the tool.
 
 #### [**Multi-Agent Ideation Pipeline**](https://github.com/va2ai/nexus-deep-research)
-*5-phase AI system where specialized agents collaborate to discover, generate, validate, and rank ideas autonomously.*
-*   **The Impact:** Orchestrates 5 specialized agents (Trend Hunter, Ideator, Validator, Scorer, Synthesizer) through a pub/sub event bus, producing ranked startup ideas from a single industry prompt.
-*   **Key Features:** FastAPI + SSE streaming, live agent status dashboard, Gemini Deep Research integration, LLM-powered narrative report generation, full observability metrics, and 200+ tests.
+*   **What it is:** 5-phase pipeline — Trend Hunter → Ideator → Validator → Scorer → Synthesizer — running through a pub/sub event bus with SSE streaming to a live dashboard. 200+ tests.
+*   **Why this way:** Sequential chains fail on research tasks because early-phase errors compound. Pub/sub lets phases fail or retry independently.
+*   **What could break:** Event bus contention under parallelism. Schema drift between agents breaks downstream consumers silently.
+*   **What I learned:** Pub/sub was overkill for 5 phases — a simpler state machine would have done the job. I over-engineered for the pattern, not the problem.
 
 #### [**AI Agent Orchestration Platform**](https://github.com/va2ai/ai-agent-orchestration-platform)
-*A "roundtable refinement" multi-agent system designed for high-accuracy reasoning.*
-*   **The Impact:** Implemented parallel critic loops and convergence conditions that significantly accelerated refinement cycles compared to sequential chains.
-*   **Key Features:** Structured outputs for iterative stability, run-metadata capture for debugging, and traceable history for audit logs.
+*   **What it is:** "Roundtable refinement" system — parallel critic agents with convergence conditions on iterative outputs.
+*   **Why this way:** Sequential refinement plateaus quickly because each pass sees the same critic. Parallel critics produce more diverse feedback.
+*   **What could break:** Convergence detection tuning — too tight and it never stops, too loose and you don't get the refinement benefit.
+*   **What I learned:** Convergence conditions are harder to tune than I expected. Ended up with a hard max-iteration ceiling as a safety net.
 
 #### [**AI Agent Platform**](https://github.com/va2ai/ai-agent-platform)
-*Multi-agent AI platform with pluggable tools, parallel + compositional function calling, agent delegation, and a built-in research system.*
-*   **The Impact:** Reference implementation of modern agent patterns — parallel tool calls, agent-to-agent delegation, and multi-depth research loops — as a reusable chassis.
-*   **Key Features:** Interactive chat UI with model selector, agent picker, tool mode, research depth slider, system prompt editor, and live tool activity display; Gemini-powered.
+*   **What it is:** Reusable chassis for agent patterns — parallel/compositional tool calls, agent delegation, multi-depth research loops. Chat UI with model/agent/tool/depth controls.
+*   **Why this way:** Kept re-implementing tool routing on every new agent project. Built the base I wish I'd had.
+*   **What could break:** Tightly coupled to the Gemini SDK. Switching to Claude or other models would require rewriting the tool-call layer.
+*   **What I learned:** "Pluggable" is aspirational. The more pluggable I made the contracts, the more complex they got. Concrete beats configurable in v1.
 
 #### [**BVA Decision Intelligence**](https://github.com/va2ai/bva-decision-intelligence)
-*Multi-agent research platform for deep BVA decision analysis — hybrid search, outcome classification, automated report generation.*
-*   **The Impact:** Turns natural-language research objectives into comprehensive, citation-verified reports with PDF/DOCX export.
-*   **Key Features:** Full-text + Qdrant vector hybrid search, automatic Granted/Denied/Remanded/Mixed outcome classification, token/cost tracking, OpenRouter integration.
+*   **What it is:** Multi-agent research platform that turns natural-language research objectives into citation-verified reports with PDF/DOCX export. Full-text + Qdrant hybrid search, automatic Granted/Denied/Remanded/Mixed outcome classification.
+*   **Why this way:** Attorneys need structured outputs, not chat. Outcome classification is cheap to run and makes the result library filterable, which is what users actually came for.
+*   **What could break:** Qdrant → pgvector migration would be painful given how tightly coupled retrieval is. OpenRouter sits between me and the model, which adds a failure point I don't control.
+*   **What I learned:** The outcome classifier was more useful to users than the fancy multi-agent reasoning. Simple features win when they solve the workflow problem.
 
 #### [**CAVC Tracker**](https://vaclaims.net)
-*Legal-tech product for veterans-law attorneys tracking Court of Appeals for Veterans Claims dockets.*
-*   **The Impact:** Purpose-built docket-monitoring layer over CAVC filings — alerts, case timelines, and decision tracking for a niche underserved by general legal-tech.
-*   **Key Features:** Landing page live at [vaclaims.net](https://vaclaims.net); ingestion and timeline views built on the BVA research infrastructure.
+*   **What it is:** Docket tracker for veterans-law attorneys following Court of Appeals for Veterans Claims cases — alerts, timelines, decision tracking.
+*   **Why this way:** General legal-tech doesn't cover CAVC well; attorneys were copy-pasting court RSS feeds into spreadsheets. Niche product for an underserved workflow.
+*   **What could break:** CAVC site structure changes breaking ingestion. Alert volume tuning — too noisy and users unsubscribe.
+*   **What I learned:** Landing page first, product second. Pre-signup validation filtered whether the ingestion pipeline was worth building at all.
 
 #### [**Edge Deep Research & Validation API**](https://github.com/va2ai/edge-ai-search-validation-service)
-*Edge-deployed research agent that performs multi-round search and returns citation-backed synthesis.*
-*   **The Impact:** Developed robust source-quality scoring and conflict detection to mitigate hallucinations under strict edge latency constraints.
-*   **Key Features:** OpenAI Responses API on Cloudflare Workers, designed for low-latency validation and high-recall research against live web and internal data sources.
+*   **What it is:** Research agent deployed on Cloudflare Workers. Multi-round search with source-quality scoring and conflict detection, returning citation-backed synthesis.
+*   **Why this way:** Edge deployment keeps validation latency sub-second globally, which matters for interactive UX. OpenAI Responses API handles the search-with-tools orchestration cleanly.
+*   **What could break:** Workers' 30-second execution ceiling bounds how deep I can recurse. OpenAI quota. Conflict detection heuristics are hand-tuned.
+*   **What I learned:** Source quality scoring matters more than search depth. A few bad sources poison the synthesis worse than missing a good one.
 
 #### [**RAG Decision Analysis System**](https://github.com/va2ai/rag-decision-analysis-system)
-*Extraction + hybrid retrieval pipeline for processing large corpuses of regulated legal decisions.*
-*   **The Impact:** Achieved high retrieval recall by framing development around evaluation rigor — focusing on reproducible extraction and defensible output chains.
-*   **Key Features:** Hybrid search optimization, entity extraction at scale, and similarity search for high-stakes decision matching, validated on a 100-decision test set.
+*   **What it is:** Extraction + hybrid retrieval pipeline for BVA decisions, validated on a 100-decision test set.
+*   **Why this way:** You can't improve retrieval without a test set. Built the harness first, then the retriever.
+*   **What could break:** Test set staleness as the BVA corpus evolves. Hybrid weighting doesn't transfer cleanly to new domains.
+*   **What I learned:** I spent more time on the eval harness than the retriever and it was the right call. Eval quality is a ceiling on pipeline quality.
 
 #### [**DevPortAI RAG Fact-Check**](https://github.com/va2ai/devportai)
-*Production-ready RAG fact-checking monorepo — FastAPI backend, React frontend, PostgreSQL + pgvector.*
-*   **The Impact:** Reference architecture stress-testing grounding reliability in RAG pipelines via multi-stage verification layers.
-*   **Key Features:** Full-stack monorepo, pgvector-backed semantic retrieval, Dockerized for repeatable deployment.
+*   **What it is:** Reference RAG fact-check monorepo — FastAPI backend, React frontend, PostgreSQL + pgvector.
+*   **Why this way:** Wanted a realistic-complexity template to experiment with grounding techniques without rebuilding the plumbing each time.
+*   **What could break:** Monorepo tooling. pgvector index tuning gets tricky past a few million rows.
+*   **What I learned:** Multi-stage verification adds latency linearly. There's a Pareto frontier between speed and grounding confidence — pick a point, don't try to win both.
 
 ---
 
-### 🎯 What I Bring
-*   **Ships to production:** Not a prototype-only engineer. I've deployed a multi-agent SaaS on GCP that real users depend on, with daily automated content pipelines and monetization live.
-*   **Operational Efficiency:** Drastically reduced manual analyst prep and review time for complex case work through grounded automation and validation layers.
-*   **Audit-Ready Reliability:** Specialized in output consistency and traceability, achieving high-density citation coverage and minimal false-citation rates via custom evaluation frameworks.
-*   **Performance Optimization:** Built production-grade workflows optimized for cost-efficiency and low-latency response times in interactive, multi-turn AI sessions.
+### 🛠 How I Work
 
----
-
-### 🛠 Core Competencies
-*   **Agent Orchestration:** Multi-agent coordination (LangGraph), routing, memory management, tool-use guardrails, MCP server authoring and deployment.
-*   **Retrieval Engineering:** Advanced chunking strategies, embedding optimization, hybrid (keyword + semantic) search, pgvector and Qdrant at scale.
-*   **Real-Time Systems:** Voice AI, WebSocket bridging, SSE streaming, sub-second latency under concurrent load.
-*   **Evals & Governance:** Building golden datasets, regression testing, ablation studies, and production telemetry.
-*   **Data Intelligence:** Extracting structured, actionable insights from high-volume, "messy" legal and policy documentation.
+*   **Comprehension before shipping.** I can explain every architectural choice in every project above — what I considered, what I rejected, and where the fragile points are. Nothing I ship is a magic box to me.
+*   **Evaluation before optimization.** Test harness first, then the pipeline. If I can't measure it, I can't improve it.
+*   **Plain English over marketing language.** "Reduced hallucination" is cheap. "15% of sessions to under 1.5%, measured on X test set" is a claim.
+*   **Override the model deliberately.** I keep a running note of where I throw out AI output and where I keep it. That's where the real decisions live.
+*   **Ship learnings with the work.** What I learned is as much the deliverable as the code.
 
 ---
 
 ### 🤝 Let's Connect
-📍 **Location:** Miamisburg / Dayton / Cincinnati (Remote OK)
+
+📍 **Location:** Miamisburg / Dayton / Cincinnati • Remote OK
 📧 **Email:** [ai@vaclaims.net](mailto:ai@vaclaims.net)
-📝 **Note to Recruiters:** I specialize in the bridge between "AI hype" and "Applied Reality." If you need an engineer who has shipped production multi-agent systems and understands evaluation rigor, grounding, and operational cost — let's talk.
+
+If you're hiring for applied AI / LLM engineering roles — especially ones where grounding, evaluation, and operational cost matter — I'd like to talk. I shipped a multi-agent SaaS on GCP in the last year. I can walk you through every trade-off I made.
 
 <p align="center">
   <img height="170" src="https://github-readme-stats.vercel.app/api?username=va2ai&show_icons=true&theme=dark&hide_border=true" />
