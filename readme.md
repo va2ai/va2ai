@@ -6,6 +6,8 @@
 
 Applied AI and full-stack engineer with 15+ years building software and 3+ years shipping AI systems in production. I build production-grade AI products for document-heavy, high-stakes workflows — with a focus on retrieval, agents, evaluation, citation validation, and real SaaS infrastructure.
 
+Building LLM applications since mid-2023, starting with LangChain/OpenAI retrieval QA prototypes and progressing into production multi-agent legal-intelligence systems with source-grounded retrieval, citation validation, observability, and SaaS deployment.
+
 [GitHub](https://github.com/va2ai) · [LinkedIn](https://www.linkedin.com/in/va2ai) · [Resume](https://vaclaims.net/resume) · [V2V Intelligence](https://vaclaims.net) · [Email](mailto:ai@vaclaims.net)
 
 ---
