@@ -26,6 +26,8 @@ Building LLM applications since mid-2023, starting with LangChain/OpenAI retriev
 
 **[V2V Intelligence](https://vaclaims.net)** — production VA legal-intelligence SaaS for veterans, attorneys, and advocates. Built with React 19, TypeScript, Firebase, Stripe, Cloud Run, and AI research workflows across BVA decisions, CAVC appeals, 38 CFR, M21-1, KnowVA, and Federal Register sources.
 
+**va-claims-intel** *(private repo — access on request)* — the implementation surface behind V2V Intelligence: full-stack product UI, authentication, subscription gating, usage tracking, document workflows, multi-agent research and analysis pipelines, attorney research mode, and the CAVC Winning-Arguments Playbook.
+
 **[decision-lens](https://github.com/va2ai/decision-lens)** — multi-agent document analysis pipeline turning dense administrative decisions into grounded, citation-checked reports. LangGraph orchestration, LiteLLM for model routing, Instructor for structured outputs, ChromaDB retrieval, FastAPI + React, with an adversarial critic in the synthesis loop.
 
 **[bvaapi2](https://github.com/va2ai/bvaapi2)** — BVA Decision Search + KnowVA Knowledge Base API. The data plane behind V2V Intelligence — Cloud Run service exposing BVA, CAVC, CFR, M21-1, KnowVA, diagnostic code, and Federal Register tools for agent workflows.
