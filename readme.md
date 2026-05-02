@@ -2,11 +2,11 @@
 
 **Applied AI Engineer · Full-Stack Product Builder · Founder of [V2V Intelligence](https://vaclaims.net)**
 
-> AI can generate code. The hard part is building systems that are traceable, useful, and safe enough for real users.
+> AI can generate code. The hard part is shipping systems that are traceable, useful, and safe enough for real users — especially when "wrong" has a legal cost.
 
-Applied AI and full-stack engineer with 15+ years building software and 3+ years shipping AI systems in production. I build production-grade AI products for document-heavy, high-stakes workflows — with a focus on retrieval, agents, evaluation, citation validation, and real SaaS infrastructure.
+Applied AI and full-stack engineer. 15+ years building software, 3+ years shipping LLM systems in production. I build AI products for document-heavy, high-stakes workflows — with a focus on retrieval, multi-agent orchestration, evaluation, citation validation, and the SaaS layer underneath.
 
-Building LLM applications since mid-2023, starting with LangChain/OpenAI retrieval QA prototypes and progressing into production multi-agent legal-intelligence systems with source-grounded retrieval, citation validation, observability, and SaaS deployment.
+Building LLM applications since mid-2023, starting with LangChain/OpenAI retrieval QA prototypes and progressing into a production multi-agent legal-intelligence platform serving veterans, accredited advocates, and attorneys.
 
 [GitHub](https://github.com/va2ai) · [LinkedIn](https://www.linkedin.com/in/va2ai) · [Resume](https://vaclaims.net/resume) · [V2V Intelligence](https://vaclaims.net) · [Email](mailto:ai@vaclaims.net)
 
@@ -14,21 +14,34 @@ Building LLM applications since mid-2023, starting with LangChain/OpenAI retriev
 
 ## 🚀 What I Ship
 
-- **Production AI systems** — multi-agent workflows, retrieval-grounded analysis, MCP tools, eval loops, and validation gates
-- **Legal / GovTech intelligence products** — VA claims research, BVA/CAVC analysis, CFR/M21-1 retrieval, citation-backed synthesis
-- **Full-stack SaaS platforms** — React, TypeScript, Node.js, Firebase, Stripe billing, usage gates, Cloud Run deploys
-- **Agentic infrastructure** — tool calling, role-gated agents, streaming workflows, cost/latency controls, observability
-- **Document automation** — upload parsing, structured extraction, official form prefill, PDF generation, and workflow routing
+- **Production AI systems** — multi-agent workflows, retrieval-grounded analysis, MCP tools, eval loops, faithfulness validators, and adversarial review agents
+- **Legal / GovTech intelligence products** — VA claims research, BVA/CAVC analysis, CFR/M21-1 retrieval, citation-backed synthesis, official VA form prefill
+- **Full-stack SaaS platforms** — React 19, TypeScript, Node, Firebase, Stripe billing with 4-tier gating, Cloud Run + Cloudflare Workers + Fly.io deploys
+- **Agentic infrastructure** — declarative workflow runtimes, role-gated agents, streaming UIs, cost/latency controls, prompt versioning, schema-enforced outputs
+- **Real-time voice systems** — Twilio Programmable Voice + Gemini Live, audio bridging, tool calling mid-call
+- **Document automation** — upload parsing, structured extraction, official VA form prefill (XFA/AcroForm), PDF generation
+
+---
+
+## 🆕 Recently Shipped on V2V
+
+- **Attorney Research Swarm** — 9-stage decompose → plan → retrieve → score → conflicts → synthesize coordinator. Drafts a memo with every citation checked against the retrieved authority table.
+- **Appeal Strategy Swarm** — paste a BVA decision, get a CAVC-ready battlecard with detected board errors, predicted Secretary defenses, and recommended appeal theories.
+- **Search Swarm** — deterministic, no-LLM authority-first search ordering across BVA + CAVC + CFR + M21-1 + diagnostic codes. A § 3.310 hit beats 200 BVA decisions on the same query, by design.
+- **CAVC Winning-Arguments Playbook** — Firm-tier pattern library auto-curated from CAVC briefs with deduplication and citation climbing.
+- **Phone Agent** — real-time voice intake bridging Twilio + Gemini Live with PIN flow and 7 tool functions.
+- **Daily Intelligence Brief** — auto-generated daily digest from real BVA/CAVC activity, prerendered at build time.
+- **Wiki + Playbook ingestion layer** — git-tracked markdown with YAML frontmatter, runtime validation, source provenance, tier-aware visibility, agent writeback paths.
 
 ---
 
 ## 🏆 Highlighted Work
 
-**[V2V Intelligence](https://vaclaims.net)** — production VA legal-intelligence SaaS for veterans, attorneys, and advocates. Built with React 19, TypeScript, Firebase, Stripe, Cloud Run, and AI research workflows across BVA decisions, CAVC appeals, 38 CFR, M21-1, KnowVA, and Federal Register sources.
+**[V2V Intelligence](https://vaclaims.net)** — production AI legal-intelligence SaaS for veterans, attorneys, and advocates. React 19 + TypeScript + Firebase + Stripe + Cloud Run, with AI workflows across BVA decisions, CAVC appeals, 38 CFR, M21-1, KnowVA, and Federal Register sources. 4-tier pricing (Veteran / Advocate / Solo Attorney / Firm) with usage gates, report credits, and tier-gated premium swarms.
 
-**va-claims-intel** *(private repo — access on request)* — the implementation surface behind V2V Intelligence: full-stack product UI, authentication, subscription gating, usage tracking, document workflows, multi-agent research and analysis pipelines, attorney research mode, and the CAVC Winning-Arguments Playbook.
+**va-claims-intel** *(private repo — access on request)* — the implementation surface behind V2V Intelligence: full-stack product UI, authentication, subscription gating, usage tracking, document workflows, multi-agent research and analysis pipelines, attorney research mode, appeal strategy swarm, and the CAVC Winning-Arguments Playbook.
 
-**[decision-lens](https://github.com/va2ai/decision-lens)** — multi-agent document analysis pipeline turning dense administrative decisions into grounded, citation-checked reports. LangGraph orchestration, LiteLLM for model routing, Instructor for structured outputs, ChromaDB retrieval, FastAPI + React, with an adversarial critic in the synthesis loop.
+**[decision-lens](https://github.com/va2ai/decision-lens)** — multi-agent document analysis pipeline turning dense administrative decisions into grounded, citation-checked reports. LangGraph orchestration, LiteLLM model routing, Instructor structured outputs, ChromaDB retrieval, FastAPI + React, with an adversarial critic in the synthesis loop.
 
 **[bvaapi2](https://github.com/va2ai/bvaapi2)** — BVA Decision Search + KnowVA Knowledge Base API. The data plane behind V2V Intelligence — Cloud Run service exposing BVA, CAVC, CFR, M21-1, KnowVA, diagnostic code, and Federal Register tools for agent workflows.
 
@@ -36,9 +49,9 @@ Building LLM applications since mid-2023, starting with LangChain/OpenAI retriev
 
 **[bva-citation-validator](https://github.com/va2ai/bva-citation-validator)** — post-generation citation validator for legal AI output. Detects hallucinated CFR citations, BVA docket numbers, and CAVC case references in LLM responses before they reach a user.
 
-**[ai-agent-platform](https://github.com/va2ai/ai-agent-platform)** — multi-agent platform with Gemini 3.1, pgvector, custom runtime, and chat UI. Exploration surface for orchestration patterns that ended up in production V2V workflows.
+**[ai-agent-platform](https://github.com/va2ai/ai-agent-platform)** — multi-agent platform with Gemini, pgvector, custom runtime, and chat UI. Exploration surface for orchestration patterns that ended up in production V2V workflows.
 
-**[rag-decision-analysis-system](https://github.com/va2ai/rag-decision-analysis-system)** — 100-decision validation harness for a graph-lite schema over BVA decisions backed by pgvector. Eval-driven schema design before scaling retrieval to 1.85M decisions.
+**[rag-decision-analysis-system](https://github.com/va2ai/rag-decision-analysis-system)** — 100-decision validation harness for a graph-lite schema over BVA decisions backed by pgvector. Eval-driven schema design before scaling retrieval to the full BVA corpus.
 
 **[edge-ai-search-validation-service](https://github.com/va2ai/edge-ai-search-validation-service)** — AI-powered deep research API on Cloudflare Workers using the OpenAI Responses API. Edge-deployed validation surface for research outputs.
 
@@ -50,64 +63,71 @@ Building LLM applications since mid-2023, starting with LangChain/OpenAI retriev
 
 I do not treat "AI built this" as the signal. The signal is whether I can explain the architecture, trade-offs, failure modes, and validation strategy.
 
-### V2V Intelligence
+### V2V Intelligence — Multi-Agent Research
 
-**What it does:**
-Turns fragmented VA legal sources into a unified research and claims-intelligence platform. Users can search legal authorities, analyze decisions, inspect appellate patterns, generate issue breakdowns, and trace outputs back to sources.
+**What it does:** Turns fragmented VA legal sources into a unified research and claims-intelligence platform. Users search authorities, analyze decisions, inspect appellate patterns, generate issue breakdowns, and trace every output to a government source.
 
-**Why this architecture:**
-VA claims analysis is not one retrieval call. Intake, authority mapping, evidence evaluation, conflict detection, citation validation, and synthesis all fail differently. Splitting the work into staged agents makes failures easier to isolate and repair.
+**Why this architecture:** VA claims analysis is not one retrieval call. Intake, authority mapping, evidence evaluation, conflict detection, citation validation, and synthesis all fail differently. Splitting the work into staged agents makes failures isolatable and repairable.
 
 **What can break:**
-- Bad retrieval can poison downstream synthesis.
-- BVA decisions are persuasive, not precedential.
+- Bad retrieval poisons downstream synthesis.
+- BVA decisions are persuasive, not precedential — the system must never render them as binding.
 - M21-1 policy and CFR authority require careful hierarchy handling.
 - Citation-looking text can be legally irrelevant if not grounded in the retrieved record.
 
-**What I learned:**
-The most important AI reliability feature is not a bigger model. It is a validation loop that converts model uncertainty into explicit metadata instead of hiding it inside polished prose.
+**What I learned:** The most important AI reliability feature is not a bigger model. It is a validation loop that converts model uncertainty into explicit metadata instead of hiding it inside polished prose.
+
+---
+
+### Search Swarm — Deterministic, Authority-First, No LLM
+
+**What it does:** Runs a typed query in parallel across 5 corpora (BVA, CAVC, CFR, M21-1, diagnostic codes), normalizes to a shared schema, and orders results by **authority weight** before relevance — binding regulation first, precedential CAVC second, agency policy third, non-precedential Board last.
+
+**Why this architecture:** Volume kills relevance. A naive "rank by hits" search drowns the controlling regulation under hundreds of BVA decisions citing it. Authority-first ordering matches how an attorney actually reads the law.
+
+**What can break:**
+- eCFR's hierarchy has a section-prefix collision bug that produces `3.3.310` if you concatenate naively.
+- CourtListener falls back to party-name search if full-text isn't wired — silently degrading quality.
+- Intent classification regex needs ordering (most specific first) or it misclassifies.
+
+**What I learned:** Some of the highest-leverage product surfaces don't need an LLM at all. The swarm is faster, cheaper, deterministic, and more accurate than a generative re-ranker would be.
 
 ---
 
 ### MCP Research Platform (bvaapi2)
 
-**What it does:**
-Exposes legal research tools as a unified service surface so agents and humans can query BVA decisions, CFR sections, CAVC dockets, M21-1 content, diagnostic codes, and Federal Register material through one interface.
+**What it does:** Exposes legal research tools as a unified service surface so agents and humans can query BVA decisions, CFR sections, CAVC dockets, M21-1 content, diagnostic codes, and Federal Register material through one interface.
 
-**Why this architecture:**
-Agents perform better when tools are narrow, typed, and role-specific. A general "search everything" endpoint creates ambiguity. Separate tools create clearer contracts.
+**Why this architecture:** Agents perform better when tools are narrow, typed, and role-specific. A general "search everything" endpoint creates ambiguity. Separate tools create clearer contracts.
 
 **What can break:**
-- Live source APIs can change shape.
+- Live source APIs change shape.
 - Retrieval freshness and latency trade off against each other.
-- Tool overload can degrade agent planning if every agent can call every tool.
+- Tool overload degrades agent planning if every agent can call every tool.
 
-**What I learned:**
-Least-privilege agent tooling matters. Intake agents do not need the same tools as analysis agents. Role-gating reduces accidental misuse and improves debuggability.
+**What I learned:** Least-privilege agent tooling matters. Intake agents do not need the same tools as analysis agents. Role-gating reduces accidental misuse and improves debuggability.
 
 ---
 
 ### Citation Validation Loop
 
-**What it does:**
-Checks generated legal claims against retrieved authority before output is trusted.
+**What it does:** Checks generated legal claims against retrieved authority before output is trusted.
 
-**Why this architecture:**
-LLMs can state a correct legal rule while attaching the wrong citation. That failure is hard for users to spot and dangerous in legal workflows.
+**Why this architecture:** LLMs can state a correct legal rule while attaching the wrong citation. That failure is hard for users to spot and dangerous in legal workflows.
 
 **What can break:**
 - Regex validation misses semantic overreach.
 - Model critics can miss deterministic citation errors.
 - Retrieved authority may be incomplete.
 
-**What I learned:**
-Validation needs both deterministic checks and model-based skepticism. Regex catches citation existence. A critic catches overstatement, unsupported inference, and misleading synthesis.
+**What I learned:** Validation needs both deterministic checks and model-based skepticism. Regex catches citation existence. A critic catches overstatement, unsupported inference, and misleading synthesis.
 
 ---
 
 ## 📝 Published / Public Work
 
 - **[V2V Intelligence](https://vaclaims.net)** — live VA claims intelligence SaaS
+- **[V2V for Attorneys](https://vaclaims.net/for-attorneys)** — attorney-facing landing
 - **[decision-lens](https://github.com/va2ai/decision-lens)** — multi-agent document analysis pipeline
 - **[bvaapi2](https://github.com/va2ai/bvaapi2)** — BVA + KnowVA API and MCP research surface
 - **[crazy-caller](https://github.com/va2ai/crazy-caller)** — Twilio + Gemini Live phone agent
@@ -138,6 +158,7 @@ Validation needs both deterministic checks and model-based skepticism. Regex cat
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white)
 ![Claude](https://img.shields.io/badge/Claude-191919?style=flat&logo=anthropic&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat&logo=googlegemini&logoColor=white)
+![Gemini Live](https://img.shields.io/badge/Gemini_Live-Realtime_Voice-8E75B2?style=flat)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
 ![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=flat&logo=langchain&logoColor=white)
 ![CrewAI](https://img.shields.io/badge/CrewAI-Multi_Agent-4B5563?style=flat)
@@ -156,6 +177,7 @@ Validation needs both deterministic checks and model-based skepticism. Regex cat
 ![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=flat&logo=googlecloud&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
 ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat&logo=cloudflareworkers&logoColor=white)
+![Fly.io](https://img.shields.io/badge/Fly.io-7B3FE4?style=flat&logo=flydotio&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
@@ -190,10 +212,11 @@ Validation needs both deterministic checks and model-based skepticism. Regex cat
 
 - Retrieval-augmented generation that cites real sources
 - Multi-agent workflows with clear handoff contracts
-- AI output validation and repair loops
+- AI output validation, faithfulness checks, and repair loops
 - SaaS billing, quota gates, and usage tracking
-- Real-time streaming interfaces
+- Real-time streaming and voice interfaces
 - Legal / regulatory workflows where traceability matters
+- Deterministic, no-LLM systems where they outperform a model
 - Products that survive contact with real users
 
 ---
