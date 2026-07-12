@@ -28,6 +28,18 @@ The product code is private (`va-claims-intel` — app and agent pipelines, `bva
 
 ---
 
+## Now building: Varep
+
+**Varep** *(private — walkthrough on request)* is a citation-locked VA claims-file workspace for VSOs, accredited representatives, and law firms. Where V2V answers "what does the law say," Varep answers "what does *this veteran's file* say": upload a C-file, and the system ingests, OCRs, classifies, and quality-checks the records, then builds a living case workspace — timeline, evidence gaps, deadlines, staged tasks, and drafted work product, all tied to source documents with page-level citations.
+
+The engineering choices are the point:
+
+- **Provenance is enforced, not decorative** — source evidence, generated work product, legal authority, and notes are kept structurally separate; factual outputs must cite source pages.
+- **The vector DB is not the system of record** — durable document storage plus relational metadata is; the retrieval index is rebuildable.
+- **Analysis goes stale on purpose** — new evidence or a corrected document marks downstream outputs stale until refreshed, so nobody acts on an outdated AI conclusion.
+
+---
+
 ## Public code
 
 - **[citation-validator](https://github.com/va2ai/citation-validator)** — post-generation hallucination validator for legal AI output. Five-layer architecture: sentinel-tagged retrieval, grounded generation, structured extraction, deterministic cross-reference, adversarial critic. Catches fabricated regulation citations, docket numbers, and case references before they reach a user.
@@ -60,6 +72,6 @@ The signal isn't "AI built this." It's whether I can explain the architecture, t
 
 ---
 
-💼 **Currently:** building V2V Intelligence, running the Generative AI Ohio meetup, and looking for applied AI / agent systems / backend roles where production judgment matters.
+💼 **Currently:** building V2V Intelligence and Varep, running the Generative AI Ohio meetup, and looking for applied AI / agent systems / backend roles where production judgment matters.
 
 📫 [ai@vaclaims.net](mailto:ai@vaclaims.net) · [LinkedIn](https://www.linkedin.com/in/va2ai) · [Resume](https://vaclaims.net/resume)
