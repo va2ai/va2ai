@@ -51,15 +51,17 @@ The engineering choices are the point:
 
 ## How I think about AI reliability
 
-The signal isn't "AI built this." It's whether I can explain the architecture, the trade-offs, the failure modes, and the validation strategy.
+I ship LLM systems in a domain where a wrong citation has legal consequences. Every rule below was earned from a production failure, not a blog post.
 
-**Deterministic beats generative — when it does.** The Search Swarm uses no LLM at all. Naive rank-by-hits drowns the controlling regulation under hundreds of Board decisions that cite it; ordering by legal authority weight matches how an attorney actually reads the law — and it's faster, cheaper, and reproducible. The bugs that mattered were unglamorous: a section-prefix collision in eCFR's hierarchy that yields `3.3.310` if you concatenate naively, and an upstream API that silently degrades to party-name search when full-text isn't wired.
+**Reach for determinism before generation.** One of the highest-leverage components in V2V — the Search Swarm — contains no LLM. Ranking by legal authority weight instead of hit count is what an attorney actually needs, and deterministic code is faster, cheaper, and testable. The bugs that mattered were unglamorous: an eCFR hierarchy quirk that yields `3.3.310` if you concatenate section prefixes naively, and an upstream API that silently falls back to party-name search when full-text isn't wired.
 
-**Validation converts uncertainty into metadata.** LLMs will state a correct legal rule and attach the wrong citation — a failure users can't spot and legal workflows can't tolerate. Deterministic checks catch citations that don't exist in the retrieved record; a model-based critic catches overstatement and unsupported inference. You need both. The biggest reliability win I've found is not a bigger model — it's a loop that surfaces model uncertainty explicitly instead of hiding it inside polished prose.
+**Validate against the retrieved record, not against plausibility.** LLMs will state a correct legal rule and attach the wrong citation — polished, confident, and wrong in a way users can't spot. My validation loop pairs a deterministic cross-reference (does this citation exist in the retrieved authority?) with an adversarial model critic (does the source actually support this claim?). Each catches what the other misses. The public [citation-validator](https://github.com/va2ai/citation-validator) is this pattern, extracted.
 
-**Staged agents isolate failure.** Claims analysis is not one retrieval call. Intake, authority mapping, evidence evaluation, conflict detection, and synthesis all fail differently, so they run as separate stages with clear handoff contracts — failures become isolatable and repairable. Tooling is least-privilege per role: intake agents don't get analysis tools. Role-gating reduces accidental misuse and makes agent behavior debuggable.
+**Give failures an address.** Claims analysis runs as staged agents — intake, authority mapping, evidence evaluation, conflict detection, synthesis — because those stages fail differently, and a failure you can localize is a failure you can fix. Tools are least-privilege per role: intake agents can't call analysis tools, which shrinks the blast radius and keeps traces readable.
 
-**Domain constraints are architecture.** BVA decisions are persuasive, not precedential — the system must never render one as binding. Regulation, court precedent, and agency policy sit in a hierarchy the retrieval and synthesis layers have to respect. Getting this right is what separates a legal AI tool from a liability.
+**Measure before scaling.** Before indexing the full Board corpus, I validated the retrieval schema against a 100-decision evaluation harness. Before trusting a compaction model in long-running agent sessions, I benchmarked [6 models across 36 combinations](https://github.com/va2ai/llm-compaction-benchmark). Evals up front are cheaper than debugging in production — and they turn "I think this works" into a number.
+
+**Treat domain rules as architecture, not prompt text.** Board decisions are persuasive, not precedential; a regulation outranks the policy manual. That hierarchy is enforced in code — authority-first ordering in search, citation checks at synthesis — not left to a sentence in a system prompt the model may ignore. Getting this right is the difference between a legal research tool and a liability.
 
 ---
 
